@@ -1,0 +1,117 @@
+-gallery_images = ["club-sandwich", 'panini', 'papas', 'combo', 'hot-cakes', 'hamburger']
+
+!!! 5
+%html{class: "no-js", lang: "es"}
+  %head
+    %meta{charset: "utf-8"}
+    %title La mejor comida en restaurante Facilito
+    %meta{name: "description", content: "Come rico en el mejor restaurante de la ciudad, servicio de primera"}
+    %meta{:name => "viewport", :content => "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"}/
+    %meta{:"data-name" => "image-counter", content: "#{gallery_images.size - 1}"}
+    %link{rel:"stylesheet", href:"https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.0/flexboxgrid.min.css"}
+    %link{href:"https://fonts.googleapis.com/css?family=Dancing+Script", rel:"stylesheet", type:"text/css"}
+    %link{rel: "stylesheet", href: "./css/normalize.css"}
+    %link{rel: "stylesheet", href: "./css/bootstrap.css"}
+    %link{rel: "stylesheet", href: "./css/main.css"}
+    %script{src: "./js/vendor/modernizr-2.8.3.min.js"}
+  %body
+    ="<!--[if lt IE 9]>"
+    %p{class: "browserupgrade"}
+      Estas usando un navegador 
+      %strong desactualizado 
+      Por favor 
+      %a{href: "http://browsehappy.com/"}
+        actualiza tu navegador 
+      para una mejor experiencia
+    ="<![endif]-->"
+    .video-container
+      %video{autoplay: true, loop: true, width: "120", height: "720", poster: "./videos/snapshots/night-bbq.jpg"}
+        %source{src: "./videos/mp4/bbq.mp4", type: "video/mp4"}
+        %source{src: "./videos/webm/bbq.webm", type: "video/webm"}
+    .row.full-height.middle-xs.center-xs.relative.up#home
+      .col-xs-12
+        .box.white-text
+          %img{src: "./imagenes/logo.png", alt: "Logo Restaurante", width: "200"}
+          %h1.dancing-script.title.no-margin Restaurante Facilito
+          %p#is-open 
+            %i.glyphicon.glyphicon-time
+            %span.text Abierto ahora
+      %nav.fixed.top.right.navigation.white-text#navigation
+        -menu = [{title: 'Home', link: '#home'}, {title: 'Menú', link: '#menu'}, {title: 'Galería', link: '#gallery'}, {title: 'Contacto', link: '#contact'}, {title: 'Como llegar', link: '#location'}]
+        %ul.list-inline
+          -menu.each do |item|
+            %li
+              %a{href: item[:link]}= item[:title]
+      .absolute.black.large-padding.left.white-text.full-width#description
+        .row.middle-xs.center-xs
+          .col-xs-7-col-sm-6.white-text.medium
+            Atención cálida y comida preparada por artistas
+          .col-xs.hidden#sticky-navigation
+            .box
+              %nav.text-right.navigation#responsive-nav
+                %i.glyphicon.glyphicon-menu-hamburger.glyphicon-remove.white-text.subtitle#menu-opener
+                %ul.list-inline
+                  -menu.each do |item|
+                    %li
+                      %a.menu-link{href: item[:link]}= item[:title]
+    .text-center.relative#menu
+      .absolute.white#menu-title
+        %h2.dancing-script.title Menú
+      -menu_photos = [{name: 'Club Sandwich', image: './imagenes/food/club-sandwich-thumb', pricing: '10.00'}, {name: 'Combo Hamburguersa', image: './imagenes/food/combo-thumb', pricing: '50.00'}, {name: 'Hamburguersa', image: './imagenes/food/hamburger-thumb', pricing: '20.00'}, {name: 'Hot Cakes', image: './imagenes/food/hot-cakes-thumb', pricing: '30.00'}, {name: 'Panini', image: './imagenes/food/panini-thumb', pricing: '15.00'}, {name: 'Papas', image: './imagenes/food/papas-thumb', pricing: '10.00'}, {name: 'Club Sandwich', image: './imagenes/food/club-sandwich-thumb', pricing: '10.00'}, {name: 'Hamburguersa', image: './imagenes/food/hamburger-thumb', pricing: '20.00'}]
+
+      .row
+        -menu_photos.each do |photo|
+          .col-md-4.col-lg-3.col-sm-6.col-xs-12.food{style: "background-image: url(#{photo[:image]}.jpg); "}
+            .screen
+              .row.middle-xs.full-height
+                .col-xs-12.white-text
+                  %h3.dancing-script.subtitle=photo[:name]
+                  %p.no-margin="$"+photo[:pricing]+" USD"
+    #gallery
+      .inner
+        -gallery_images.each do |image|
+          .image{style:"background-image: url(./imagenes/food/#{image}.jpg);"}
+    .container
+      .card.white.black-text.slim.relative
+        %h3.text-center
+          En 
+          %strong.dancing-script RestauranteFacilito 
+          cocinar no es una profesión, no es una técnica, es un 
+          %stong.dancing-script.medium arte
+        %p.top-space
+          You Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit eveniet consectetur alias atque nostrum, nemo vel voluptatem iste. Exercitationem quo at magni, porro animi aspernatur optio corporis aperiam repellat perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio velit labore molestias veniam expedita adipisci aliquam sint fugit ipsa, facilis voluptas placeat deserunt accusantium, blanditiis voluptate quos, nisi tempore dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur ipsa quis, nemo dignissimos at adipisci repudiandae ab soluta minus molestias accusantium quaerat facilis, amet voluptate exercitationem ipsam labore reprehenderit.
+          %strong.dancing-script.medium Coco - Chef
+
+    .black.white-text.full-height#contact
+      .row.middle-xs.full-height
+        .col-xs-12
+          .box
+            %p.text-center.medium#info-contacto Presiona enter para llenar los campos y enviarnos un correo.
+            %form{action: "https://formspree.io/davidg9404@gmail.com", method: "POST", id: "contact-form", class: "step-form"}
+
+              .row.center-xs
+                .col-xs-12.col-sm-2.col-md-1.first-sm
+                  .box
+                    -3.times do |i|
+                      -if i == 0
+                        .path-step.active
+                      -else 
+                        .path-step
+                .col-xs-12.col-sm-3.first-xs
+                  .box
+                    %fieldset.step.active
+                      %input{type: "email", name: "email", placeholder: "Correo electrónico", class: "input"}
+                    %fieldset.step
+                      %input{type: "text", name: "name", placeholder: "Nombre completo", class: "input"}
+                    %fieldset.step
+                      %textarea{name: "body", placeholder: "¿En qué podemos ayudarte?", class: "input"}
+    #location
+      #map
+      #message.black.large-padding.white-text.text-center.medium
+        Prueba
+
+    %script{src:"https://code.jquery.com/jquery-3.1.0.min.js", integrity:"sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=", crossorigin:"anonymous"}
+    %script
+      window.JQuery || document.write("<script src='./js/vendor/jquery-1.12.0.min.js'><\/script>");
+    %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBBWowYnnoso4kVQMCColt8jDdMwP2oobQ"}
+    %script{src: "./dist/app.js"}
